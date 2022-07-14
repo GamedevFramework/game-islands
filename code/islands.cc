@@ -26,7 +26,6 @@
 #include <gf/Random.h>
 #include <gf/RenderWindow.h>
 #include <gf/Sprite.h>
-#include <gf/Unused.h>
 #include <gf/VectorOps.h>
 #include <gf/ViewContainer.h>
 #include <gf/Views.h>
@@ -90,9 +89,8 @@ int main() {
 
   views.setInitialFramebufferSize(ScreenSize);
 
-  bi::gMessageManager().registerHandler<bi::HeroPosition>([&mainView](gf::Id id, gf::Message *msg) {
+  bi::gMessageManager().registerHandler<bi::HeroPosition>([&mainView]([[maybe_unused]] gf::Id id, gf::Message *msg) {
     assert(id == bi::HeroPosition::type);
-    gf::unused(id);
     auto positionHeroMessage = static_cast<bi::HeroPosition*>(msg);
     mainView.setCenter(positionHeroMessage->position);
     return gf::MessageStatus::Keep;

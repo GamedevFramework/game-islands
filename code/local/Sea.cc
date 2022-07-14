@@ -20,7 +20,6 @@
 #include <gf/ColorRamp.h>
 #include <gf/Noises.h>
 #include <gf/RenderTarget.h>
-#include <gf/Unused.h>
 #include <gf/VectorOps.h>
 
 #include "Messages.h"
@@ -247,9 +246,7 @@ namespace bi {
     }
   }
 
-  void Sea::update(gf::Time time) {
-    gf::unused(time);
-
+  void Sea::update([[maybe_unused]] gf::Time time) {
     if (!m_heroMoved) {
       return;
     }
@@ -352,9 +349,8 @@ namespace bi {
     target.draw(m_landVertices, states);
   }
 
-  gf::MessageStatus Sea::onHeroPosition(gf::Id id, gf::Message *msg) {
+  gf::MessageStatus Sea::onHeroPosition([[maybe_unused]] gf::Id id, gf::Message *msg) {
     assert(id == HeroPosition::type);
-    gf::unused(id);
 
     auto hero = static_cast<HeroPosition*>(msg);
 
@@ -378,9 +374,8 @@ namespace bi {
     return gf::MessageStatus::Keep;
   }
 
-  gf::MessageStatus Sea::onGoldLooted(gf::Id id, gf::Message *msg) {
+  gf::MessageStatus Sea::onGoldLooted([[maybe_unused]] gf::Id id, gf::Message *msg) {
     assert(id == GoldLooted::type);
-    gf::unused(id);
 
     auto loot = static_cast<GoldLooted*>(msg);
 

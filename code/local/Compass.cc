@@ -25,7 +25,6 @@
 #include <gf/RenderTarget.h>
 #include <gf/Shapes.h>
 #include <gf/Sprite.h>
-#include <gf/Unused.h>
 #include <gf/VectorOps.h>
 
 #include "Singletons.h"
@@ -151,10 +150,8 @@ namespace bi {
   }
 
 
-  gf::MessageStatus Compass::onStartScan(gf::Id id, gf::Message *msg) {
+  gf::MessageStatus Compass::onStartScan([[maybe_unused]] gf::Id id, [[maybe_unused]] gf::Message *msg) {
     assert(id == StartScan::type);
-    gf::unused(id);
-    gf::unused(msg);
 
     m_displayed = true;
     m_radars.clear();
@@ -163,9 +160,8 @@ namespace bi {
     return gf::MessageStatus::Keep;
   }
 
-  gf::MessageStatus Compass::onNearestTreasure(gf::Id id, gf::Message *msg) {
+  gf::MessageStatus Compass::onNearestTreasure([[maybe_unused]] gf::Id id, gf::Message *msg) {
     assert(id == NearestTreasure::type);
-    gf::unused(id);
 
     auto nearestTreasure = static_cast<NearestTreasure*>(msg);
     m_angle = gf::angle(nearestTreasure->position - m_position);
@@ -178,9 +174,8 @@ namespace bi {
     return gf::MessageStatus::Keep;
   }
 
-  gf::MessageStatus Compass::onHeroPosition(gf::Id id, gf::Message *msg) {
+  gf::MessageStatus Compass::onHeroPosition([[maybe_unused]] gf::Id id, gf::Message *msg) {
     assert(id == HeroPosition::type);
-    gf::unused(id);
 
     auto hero = static_cast<HeroPosition*>(msg);
     m_position = hero->position;

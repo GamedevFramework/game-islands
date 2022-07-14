@@ -21,7 +21,6 @@
 #include <gf/Particles.h>
 #include <gf/RenderTarget.h>
 #include <gf/Shapes.h>
-#include <gf/Unused.h>
 
 #include "Messages.h"
 #include "Sea.h"
@@ -144,9 +143,8 @@ namespace bi {
     target.draw(particles, states);
   }
 
-  gf::MessageStatus WaveManager::onHeroPosition(gf::Id id, gf::Message *msg) {
+  gf::MessageStatus WaveManager::onHeroPosition([[maybe_unused]] gf::Id id, gf::Message *msg) {
     assert(id == HeroPosition::type);
-    gf::unused(id);
 
     auto hero = static_cast<HeroPosition*>(msg);
     m_hero = hero->position;

@@ -21,7 +21,6 @@
 #include <gf/RenderTarget.h>
 #include <gf/Shapes.h>
 #include <gf/Sprite.h>
-#include <gf/Unused.h>
 
 #include "Messages.h"
 #include "Singletons.h"
@@ -150,23 +149,20 @@ namespace bi {
     target.draw(sprite, states);
   }
 
-  gf::MessageStatus Hero::onStartScan(gf::Id id, gf::Message *msg) {
+  gf::MessageStatus Hero::onStartScan([[maybe_unused]] gf::Id id, [[maybe_unused]] gf::Message *msg) {
     assert(id == StartScan::type);
-    gf::unused(id, msg);
     m_isFrozen = true;
     return gf::MessageStatus::Keep;
   }
 
-  gf::MessageStatus Hero::onStopScan(gf::Id id, gf::Message *msg) {
+  gf::MessageStatus Hero::onStopScan([[maybe_unused]] gf::Id id, [[maybe_unused]] gf::Message *msg) {
     assert(id == StopScan::type);
-    gf::unused(id, msg);
     m_isFrozen = false;
     return gf::MessageStatus::Keep;
   }
 
-  gf::MessageStatus Hero::onGameOver(gf::Id id, gf::Message *msg) {
+  gf::MessageStatus Hero::onGameOver([[maybe_unused]] gf::Id id, [[maybe_unused]] gf::Message *msg) {
     assert(id == GameOver::type);
-    gf::unused(id, msg);
     m_isGameOver = true;
     return gf::MessageStatus::Keep;
   }

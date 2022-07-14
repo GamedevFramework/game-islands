@@ -20,7 +20,6 @@
 #include <gf/Particles.h>
 #include <gf/RenderTarget.h>
 #include <gf/Shapes.h>
-#include <gf/Unused.h>
 #include <gf/VectorOps.h>
 
 #include "Singletons.h"
@@ -93,9 +92,8 @@ namespace bi {
     target.draw(particles, states);
   }
 
-  gf::MessageStatus Steam::onHeroPosition(gf::Id id, gf::Message *msg) {
+  gf::MessageStatus Steam::onHeroPosition([[maybe_unused]] gf::Id id, gf::Message *msg) {
     assert(id == HeroPosition::type);
-    gf::unused(id);
     auto hero = static_cast<HeroPosition*>(msg);
     m_heroPosition = hero->position;
     m_heroAngle = hero->angle;

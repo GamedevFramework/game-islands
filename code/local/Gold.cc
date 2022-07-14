@@ -21,7 +21,6 @@
 #include <gf/RenderTarget.h>
 #include <gf/Sprite.h>
 #include <gf/Text.h>
-#include <gf/Unused.h>
 
 #include "Singletons.h"
 
@@ -98,9 +97,8 @@ namespace bi {
     }
   }
 
-  gf::MessageStatus Gold::onGoldLooted(gf::Id id, gf::Message *msg) {
+  gf::MessageStatus Gold::onGoldLooted([[maybe_unused]] gf::Id id, gf::Message *msg) {
     assert(id == GoldLooted::type);
-    gf::unused(id);
 
     auto gold = static_cast<GoldLooted*>(msg);
     m_score += gold->value;
@@ -112,9 +110,8 @@ namespace bi {
     return gf::MessageStatus::Keep;
   }
 
-  gf::MessageStatus Gold::onGameOver(gf::Id id, gf::Message *msg) {
+  gf::MessageStatus Gold::onGameOver([[maybe_unused]] gf::Id id, [[maybe_unused]] gf::Message *msg) {
     assert(id == GameOver::type);
-    gf::unused(id, msg);
     m_gameOver = true;
     return gf::MessageStatus::Keep;
   }

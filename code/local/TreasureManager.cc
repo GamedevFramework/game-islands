@@ -23,7 +23,6 @@
 #include <gf/RenderTarget.h>
 #include <gf/Sprite.h>
 #include <gf/SpriteBatch.h>
-#include <gf/Unused.h>
 #include <gf/VectorOps.h>
 
 #include "Singletons.h"
@@ -85,9 +84,7 @@ namespace bi {
     m_treasures.push_back(treasure);
   }
 
-  void TreasureManager::update(gf::Time time) {
-    gf::unused(time);
-
+  void TreasureManager::update([[maybe_unused]] gf::Time time) {
     for (auto &treasure: m_treasures) {
       float distance = gf::euclideanDistance(treasure.position, m_heroPosition);
       treasure.alpha = gf::clamp((ViewLimit - distance) / (ViewLimit - Limit), 0.0f, 1.0f);
@@ -141,18 +138,16 @@ namespace bi {
     return treasure->position;
   }
 
-  gf::MessageStatus TreasureManager::onHeroPosition(gf::Id id, gf::Message *msg) {
+  gf::MessageStatus TreasureManager::onHeroPosition([[maybe_unused]] gf::Id id, gf::Message *msg) {
     assert(id == HeroPosition::type);
-    gf::unused(id);
 
     auto hero = static_cast<HeroPosition*>(msg);
     m_heroPosition = hero->position;
     return gf::MessageStatus::Keep;
   }
 
-  gf::MessageStatus TreasureManager::onStartScan(gf::Id id, gf::Message *msg) {
+  gf::MessageStatus TreasureManager::onStartScan([[maybe_unused]] gf::Id id, [[maybe_unused]] gf::Message *msg) {
     assert(id == StartScan::type);
-    gf::unused(id, msg);
 
     NearestTreasure message;
     message.position = getNearestTreasure();
